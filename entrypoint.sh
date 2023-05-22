@@ -4,7 +4,7 @@ echo "============================="
 echo $1
 echo "============================="
 
-echo $1 > ./input.md
+echo $1 > /tmp/input.md
 
 ls -latrh .
 
