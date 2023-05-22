@@ -81,13 +81,13 @@ parsing/dumping.
 
 def main(issue_md):
     llm = ChatOpenAI(model_name=MODEL_NAME)
-    file_contents = get_file_contents(llm, issue_md, './example')
+    file_contents = get_file_contents(llm, issue_md, '.')
     fixed_bugs = fix_bugs(llm, issue_md, file_contents)
     for k, v in fixed_bugs.items():
         print(v)
 
 
 if __name__ == '__main__':
-    with open('./example/bugfix-issue.md') as f:
+    with open('./input.md') as f:
         issue_md = f.read()
     main(issue_md)

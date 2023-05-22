@@ -1,11 +1,10 @@
 # action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Bugfixer'
+description: 'Fix some bugs'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  issue_text:  # id of input
+    description: 'The body of an issue in the correct format'
     required: true
-    default: 'World'
 outputs:
   time: # id of output
     description: 'The time we greeted you'
