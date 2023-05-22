@@ -49,4 +49,8 @@ jobs:
           openai_api_key:  ${{ secrets.openai_api_key }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
+"title": "bugfixer/${{github.event.issue.number}}"}
+          head: "bugfixer/${{github.event.issue.number}}"
+          base: "main"
+          body: "${{github.event.issue.title}}"
 ```
