@@ -20,12 +20,12 @@ RUN apt-get update && \
 
 WORKDIR /workdir
 
-COPY requirements.txt /workdir/
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY bugfixer.py /workdir/
-COPY entrypoint.sh /workdir/
+COPY bugfixer.py .
+COPY entrypoint.sh .
 # COPY example/ /app/example/
 
 # ENTRYPOINT ["python", "bugfixer.py"]
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
