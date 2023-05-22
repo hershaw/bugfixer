@@ -49,4 +49,7 @@ jobs:
           openai_api_key:  ${{ secrets.openai_api_key }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
+        with:
+          title: "Bugfixer for Issue ${{ github.event.issue.number }}: ${{ github.event.issue.title }}"
+          branch: "bugfixer/${{ github.event.issue.number }}"
 ```
