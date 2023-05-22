@@ -1,5 +1,8 @@
 # bugfixer
 
+Be sure to set your repository action permissins: https://github.com/peter-evans/create-pull-request#workflow-permissions
+And create the OPENAI_API_KEY repository secret.
+
 
 Create an issue in your repo with the following format:
 
