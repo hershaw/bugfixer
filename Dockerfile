@@ -18,15 +18,15 @@ RUN apt-get update && \
         zlib1g-dev \
         libpng-dev
 
-WORKDIR /workdir
+RUN mkdir /workdir
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt /workdir/
+RUN pip install --no-cache-dir -r /workdir/requirements.txt
 
-COPY bugfixer.py .
-COPY entrypoint.sh .
+COPY bugfixer.py /workdir/
+COPY entrypoint.sh /workdir/
 # COPY example/ /app/example/
 
 # ENTRYPOINT ["python", "bugfixer.py"]
-# ENTRYPOINT ["./entrypoint.sh"]
+# ENTRYPOINT ["/workdir/entrypoint.sh"]
 ENTRYPOINT ["ls"]
