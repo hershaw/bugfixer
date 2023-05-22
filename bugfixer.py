@@ -81,7 +81,7 @@ parsing/dumping.
 
 
 def main(issue_md):
-    llm = ChatOpenAI(model_name=MODEL_NAME)
+    llm = ChatOpenAI(model_name=MODEL_NAME, temperature=0)
     file_contents = get_file_contents(llm, issue_md, '.')
     fixed_bugs = fix_bugs(llm, issue_md, file_contents)
     for filepath, fixed_contents in fixed_bugs.items():

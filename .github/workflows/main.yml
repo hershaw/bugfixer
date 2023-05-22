@@ -14,10 +14,10 @@ jobs:
         run: echo "${{ github.event.issue.body }}"
       - name: Bugfixer
         id: bugfixer
-        uses: hershaw/bugfixer@v27
+        uses: hershaw/bugfixer@v29
         with:
           issue_md: ${{ github.event.issue.body }}
           openai_api_key:  ${{ secrets.openai_api_key }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
-        
+
