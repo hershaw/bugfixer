@@ -1,0 +1,23 @@
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  bugfixer:
+    runs-on: ubuntu-latest
+    name: Use AI to fix simple bugs and make a PR
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Inputs
+        run: echo "${{ github.event.issue.body }}"
+      - name: Bugfixer
+        id: bugfixer
+        uses: hershaw/bugfixer@v27
+        with:
+          issue_md: ${{ github.event.issue.body }}
+          openai_api_key:  ${{ secrets.openai_api_key }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        
