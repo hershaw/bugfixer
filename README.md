@@ -1,6 +1,6 @@
 # bugfixer
 
-Be sure to set your repository action permissins: https://github.com/peter-evans/create-pull-request#workflow-permissions
+Be sure to set your repository action permissions: https://github.com/peter-evans/create-pull-request#workflow-permissions
 And create the OPENAI_API_KEY repository secret.
 
 
@@ -49,4 +49,7 @@ jobs:
           openai_api_key:  ${{ secrets.openai_api_key }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
+        with:
+          title: 'Bugfixer #${{ github.event.issue.number }}: ${{ github.event.issue.title }}'
+          branch: 'bugfixer/${{ github.event.issue.number }}'
 ```
