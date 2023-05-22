@@ -29,4 +29,4 @@ COPY entrypoint.sh /workdir/
 
 # ENTRYPOINT ["python", "bugfixer.py"]
 # ENTRYPOINT ["/workdir/entrypoint.sh"]
-ENTRYPOINT ["ls /workdir"]
+ENTRYPOINT ["ls", "/workdir/"]
