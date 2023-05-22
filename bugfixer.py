@@ -43,7 +43,7 @@ def get_file_contents(llm: ChatOpenAI, issue_md: str, prefix: str):
     contents = {}
     for filename in file_list:
         print('opening', filename)
-        with open(f'{prefix}/{filename}') as f:
+        with open(f'{prefix}/{filename}', 'w') as f:
             contents[filename] = f.read()
     return contents
 
