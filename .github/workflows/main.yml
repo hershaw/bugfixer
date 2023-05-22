@@ -20,4 +20,6 @@ jobs:
           openai_api_key:  ${{ secrets.openai_api_key }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
+        with:
+          title: ${{ github.event.issue.title }}
 
