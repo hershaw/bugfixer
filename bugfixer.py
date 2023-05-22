@@ -43,7 +43,7 @@ def get_file_contents(llm: ChatOpenAI, issue_md: str, prefix: str):
     contents = {}
     for filename in file_list:
         print('opening', filename)
-        with open(f'{prefix}/{filename}', 'w') as f:
+        with open(f'{prefix}/{filename}') as f:
             contents[filename] = f.read()
     return contents
 
@@ -86,7 +86,7 @@ def main(issue_md):
     fixed_bugs = fix_bugs(llm, issue_md, file_contents)
     for filepath, fixed_contents in fixed_bugs.items():
         print('fixing', filepath)
-        with open(filepath) as fh:
+        with open(filepath, 'w') as fh:
             fh.write(fixed_contents)
 
 
