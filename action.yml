@@ -6,7 +6,7 @@ inputs:
     description: 'The body of an issue in the correct format'
     required: true
 outputs:
-  time: # id of output
+  bugfixes: # id of output
     description: 'The time we greeted you'
 runs:
   using: 'docker'

@@ -83,8 +83,10 @@ def main(issue_md):
     llm = ChatOpenAI(model_name=MODEL_NAME)
     file_contents = get_file_contents(llm, issue_md, '.')
     fixed_bugs = fix_bugs(llm, issue_md, file_contents)
-    for k, v in fixed_bugs.items():
-        print(v)
+    for filepath, fixed_contents in fixed_bugs.items():
+        print('fixing', filepath)
+        with open(filepath) as fh:
+            fh.write(fixed_contents)
 
 
 if __name__ == '__main__':
