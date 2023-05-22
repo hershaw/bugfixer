@@ -5,9 +5,15 @@ inputs:
   issue_text:  # id of input
     description: 'The body of an issue in the correct format'
     required: true
+  openai_api_key:
+    description: you gotta pay for your own openai_api_key
+    required: true
 outputs:
   bugfixes: # id of output
     description: 'The time we greeted you'
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{ inputs.issue_text }}
+    - ${{ inputs.openai_api_key }}
