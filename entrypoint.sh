@@ -4,6 +4,6 @@ echo "============================="
 echo $1
 echo "============================="
 
-echo $1 > input.json
+echo $1 > ./input.json
 
-python bugfixer.py
+python /workdir/bugfixer.py
