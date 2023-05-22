@@ -15,7 +15,7 @@ jobs:
         run: echo "${{ github.event.issue.body }}"
       - name: Bugfixer
         id: bugfixer
-        uses: hershaw/bugfixer@v31
+        uses: hershaw/bugfixer@v32
         with:
           issue_md: ${{ github.event.issue.body }}
           openai_api_key:  ${{ secrets.openai_api_key }}
