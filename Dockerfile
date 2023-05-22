@@ -28,4 +28,5 @@ COPY entrypoint.sh .
 # COPY example/ /app/example/
 
 # ENTRYPOINT ["python", "bugfixer.py"]
-ENTRYPOINT ["./entrypoint.sh"]
+# ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["ls"]
