@@ -2,7 +2,7 @@
 name: 'Bugfixer'
 description: 'Fix some bugs'
 inputs:
-  issue_text:  # id of input
+  issue_md:  # id of input
     description: 'The body of an issue in the correct format'
     required: true
   openai_api_key:
@@ -15,5 +15,5 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.issue_text }}
+    - ${{ inputs.issue_md }}
     - ${{ inputs.openai_api_key }}
