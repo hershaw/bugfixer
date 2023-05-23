@@ -3,6 +3,10 @@ on:
     types:
       - opened
       - edited
+      
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   bugfixer:
