@@ -7,4 +7,8 @@ fi
 
 docker build -t bugfixer .
 
-docker run -it --rm -e "OPENAI_API_KEY=$OPENAI_API_KEY" bugfixer python bugfixer.py
+docker run -it --rm \
+    -e "OPENAI_API_KEY=$OPENAI_API_KEY" \
+    -v $PWD/example/bugfix-issue.md:/input.md:ro \
+    -v $PWD/example/:/example/:rw \
+    bugfixer python workdir/bugfixer.py

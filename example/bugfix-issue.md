@@ -1,8 +1,7 @@
 
 ## Relevant files
 
-- code/script.py
-- bin/run.sh
+- example/code/script.py
 
 ## Bug description
 
