@@ -1,0 +1,35 @@
+name: Increment Version on Merge to main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  increment_version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Get latest tag
+        id: get_tag
+        run: |
+          git fetch --tags
+          latest_tag=$(git for-each-ref --sort=-taggerdate --format='%(refname:short)' refs/tags | head -n 1)
+          echo "::set-output name=tag::$latest_tag"
+
+      - name: Increment version
+        id: increment_version
+        run: |
+          current_tag=$([[ "${{ steps.get_tag.outputs.tag }}" =~ v([0-9]+) ]] && echo "${BASH_REMATCH[1]}")
+          next_version=$((current_tag + 1))
+          echo "::set-output name=version::v$next_version"
+
+      - name: Create and push new tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git tag ${{ steps.increment_version.outputs.version }}
+          git push origin ${{ steps.increment_version.outputs.version }}
