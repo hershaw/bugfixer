@@ -1,13 +1,16 @@
 # action.yml
 name: 'Bugfixer'
-description: 'Fix some bugs'
+description: 'Fix some bugs using AI'
 inputs:
-  issue_text:  # id of input
+  issue_md:
     description: 'The body of an issue in the correct format'
     required: true
-outputs:
-  bugfixes: # id of output
-    description: 'The time we greeted you'
+  openai_api_key:
+    description: you gotta pay for your own openai_api_key
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{ inputs.issue_md }}
+    - ${{ inputs.openai_api_key }}
