@@ -17,7 +17,7 @@ jobs:
         id: get_tag
         run: |
           git fetch --tags
-          latest_tag=$(git describe --tags --abbrev=0)
+          latest_tag=$(git for-each-ref --sort=-taggerdate --format='%(refname:short)' refs/tags | head -n 1)
           echo "::set-output name=tag::$latest_tag"
 
       - name: Increment version
