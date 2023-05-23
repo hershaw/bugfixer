@@ -70,6 +70,7 @@ contents has been corrected. Ensure that the result is safe for JSON
 parsing/dumping.
 """
     print(prompt)
+    llm.temperature = 0 # Set the temperature to zero
     output = _call_llm(llm, prompt).content
 
     print('Response ===============================')
@@ -85,7 +86,7 @@ def main(issue_md):
     fixed_bugs = fix_bugs(llm, issue_md, file_contents)
     for filepath, fixed_contents in fixed_bugs.items():
         print('fixing', filepath)
-        with open(filepath) as fh:
+        with open(filepath, 'w') as fh:
             fh.write(fixed_contents)
 
 
