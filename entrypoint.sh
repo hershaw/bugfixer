@@ -4,6 +4,10 @@ echo "============================="
 echo $1
 echo "============================="
 
-echo $1 > input.md
+echo $1 > /tmp/input.md
 
-python bugfixer.py
+ls -latrh .
+
+export OPENAI_API_KEY=$2
+
+python /workdir/bugfixer.py
