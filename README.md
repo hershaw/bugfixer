@@ -1,5 +1,7 @@
 # bugfixer
 
+Automatically fix simple bugs using LLMs. It's pretty cool.
+
 Be sure to set your repository action permissins: https://github.com/peter-evans/create-pull-request#workflow-permissions
 And create the OPENAI_API_KEY repository secret.
 
