@@ -18,6 +18,8 @@ json.parse() so ensure that your responses allow for this
 without raising an error.
 
 Please ensure that your code is PEP8 compliant.
+
+No changes other than the ones requested in the hints should be made.
 """
 
 
