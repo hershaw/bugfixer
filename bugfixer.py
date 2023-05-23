@@ -22,14 +22,21 @@ without raising an error.
 MODEL_NAME = 'gpt-3.5-turbo'
 
 
-def _call_llm(llm: ChatOpenAI, message: str):
+def _call_llm(llm: ChatOpenAI, message: str) -> str:
+    '''
+    Predicts messages using the provided ChatOpenAI model.
+    '''
     return llm.predict_messages([
         SystemMessage(content=SYSTEM_MESSAGE),
         HumanMessage(content=message),
-    ])
+    ]).content
 
 
-def get_file_contents(llm: ChatOpenAI, issue_md: str, prefix: str):
+def get_file_contents(llm: ChatOpenAI, issue_md: str, prefix: str) -> dict:
+    '''
+    Given a markdown issue description and a file path prefix, returns a dictionary
+    containing the contents of all relevant files mentioned in the issue description.
+    '''
     prompt = f"""
     {issue_md}
     ==================
@@ -39,7 +46,7 @@ def get_file_contents(llm: ChatOpenAI, issue_md: str, prefix: str):
 
     ["<insert file path 1>", "<insert file path 2>", "..."]
     """
-    file_list = json.loads(_call_llm(llm, prompt).content)
+    file_list = json.loads(_call_llm(llm, prompt))
     contents = {}
     for filename in file_list:
         with open(f'{prefix}/{filename}') as f:
@@ -47,13 +54,19 @@ def get_file_contents(llm: ChatOpenAI, issue_md: str, prefix: str):
     return contents
 
 
-def strip_preamble(llm_output):
+def strip_preamble(llm_output: str) -> str:
+    '''
+    Given the output of a ChatOpenAI model, returns only the JSON-formatted portion of the output.
+    '''
     index = llm_output.find('{')
     return llm_output[index:]
 
 
-def fix_bugs(llm: ChatOpenAI, issue_md: str, file_contents: dict):
-
+def fix_bugs(llm: ChatOpenAI, issue_md: str, file_contents: dict) -> dict:
+    '''
+    Given a markdown issue description, a dictionary of file contents, and a ChatOpenAI model,
+    returns a dictionary containing the corrected contents of each file.
+    '''
     file_contents_json = json.dumps(file_contents)
 
     prompt = f"""
@@ -74,18 +87,16 @@ each file. Then return a JSON dictionary with the same format, where each files
 contents has been corrected. Ensure that the result is safe for JSON
 parsing/dumping.
 """
-    print(prompt)
     llm.temperature = 0 # Set the temperature to zero
-    output = strip_preamble(_call_llm(llm, prompt).content)
-
-    print('Response ===============================')
-    print(output)
-    print('End response ===============================')
+    output = strip_preamble(_call_llm(llm, prompt))
 
     return json.loads(output)
 
 
-def main(issue_md):
+def main(issue_md: str) -> None:
+    '''
+    Given a markdown issue description, runs the main bug-fixing process.
+    '''
     llm = ChatOpenAI(model_name=MODEL_NAME)
     file_contents = get_file_contents(llm, issue_md, '.')
     fixed_bugs = fix_bugs(llm, issue_md, file_contents)
