@@ -53,3 +53,11 @@ jobs:
           title: "Bugfixer for Issue ${{ github.event.issue.number }}: ${{ github.event.issue.title }}"
           branch: "bugfixer/${{ github.event.issue.number }}"
 ```
+
+## Architecture
+
+This project consists of a Dockerfile and a Python script. The Dockerfile creates a container with Python 3.11 and installs all necessary dependencies. The Python script, bugfixer.py, uses OpenAI's GPT-3.5-turbo model to automatically fix bugs in files relevant to the issue at hand.
+
+## Deployment
+
+To use this action, create a new issue in your repository with a description of the bug and relevant files. Be sure to use the correct format specified in the README. Once the issue is created, this action will automatically run and create a pull request with the fixed code.
