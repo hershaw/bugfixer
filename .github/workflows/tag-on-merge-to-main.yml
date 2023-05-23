@@ -1,4 +1,4 @@
-name: Increment Version on Merge
+name: Increment Version on Merge to main
 
 on:
   push:
