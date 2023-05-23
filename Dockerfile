@@ -19,5 +19,5 @@ COPY entrypoint.sh /workdir/
 COPY example/ /workdir/example/
 
 # ENTRYPOINT ["python", "bugfixer.py"]
-CMD ["/workdir/entrypoint.sh"]
+ENTRYPOINT ["/workdir/entrypoint.sh"]
 # ENTRYPOINT ["ls", "/workdir/"]
