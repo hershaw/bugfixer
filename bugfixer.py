@@ -16,6 +16,10 @@ solutions as simple as possible while still fixing the bug.
 All of your responses will be fed directly into python's
 json.parse() so ensure that your responses allow for this
 without raising an error.
+
+Please ensure that your code is PEP8 compliant.
+
+No changes other than the ones requested in the hints should be made.
 """
 
 
