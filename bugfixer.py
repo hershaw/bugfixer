@@ -47,6 +47,11 @@ def get_file_contents(llm: ChatOpenAI, issue_md: str, prefix: str):
     return contents
 
 
+def strip_preamble(llm_output):
+    index = llm_output.find('{')
+    return llm_output[index:]
+
+
 def fix_bugs(llm: ChatOpenAI, issue_md: str, file_contents: dict):
 
     file_contents_json = json.dumps(file_contents)
@@ -71,7 +76,7 @@ parsing/dumping.
 """
     print(prompt)
     llm.temperature = 0 # Set the temperature to zero
-    output = _call_llm(llm, prompt).content
+    output = strip_preamble(_call_llm(llm, prompt).content)
 
     print('Response ===============================')
     print(output)
