@@ -70,6 +70,7 @@ contents has been corrected. Ensure that the result is safe for JSON
 parsing/dumping.
 """
     print(prompt)
+    llm.temperature = 0 # Set the temperature to zero
     output = _call_llm(llm, prompt).content
 
     print('Response ===============================')
