@@ -96,6 +96,6 @@ def main(issue_md):
 
 
 if __name__ == '__main__':
-    with open('./input.md') as f:
+    with open('/tmp/input.md') as f:
         issue_md = f.read()
     main(issue_md)
