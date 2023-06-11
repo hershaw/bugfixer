@@ -102,3 +102,4 @@ if __name__ == '__main__':
     with open('/tmp/input.md') as f:
         issue_md = f.read()
     main(issue_md)
+}
