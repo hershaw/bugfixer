@@ -1,5 +1,7 @@
 # bugfixer
 
+Automatically fix simple bugs using LLMs. It's pretty cool.
+
 Be sure to set your repository action permissins: https://github.com/peter-evans/create-pull-request#workflow-permissions
 And create the OPENAI_API_KEY repository secret.
 
@@ -43,7 +45,7 @@ jobs:
         run: echo "${{ github.event.issue.body }}"
       - name: Bugfixer
         id: bugfixer
-        uses: hershaw/bugfixer@v24
+        uses: hershaw/bugfixer@v38
         with:
           issue_md: ${{ github.event.issue.body }}
           openai_api_key:  ${{ secrets.openai_api_key }}
